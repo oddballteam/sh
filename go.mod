@@ -1,4 +1,4 @@
-module github.com/oddballteam/sh
+module github.com/oddballteam/sh/main
 
 go 1.20
 
