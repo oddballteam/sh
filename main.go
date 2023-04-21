@@ -20,7 +20,7 @@ var qs = []*survey.Question{
 		Name: "account",
 		Prompt: &survey.Select{
 			Message: "What account would you like access for:",
-			Options: []string{"wdsops-dev"},
+			Options: []string{"wdsops-dev", "wdsops-prod", "ECWS-v3", "flh-dev", "flh-test", "learn-dev", "learn-prod", "mapi-dev", "mapi-test", "pc2-dev", "pc2-test", "scout-dev", "scout-impl", "scout-prod", "scout-test"},
 			Default: "wdsops-dev",
 		},
 	},
@@ -28,10 +28,21 @@ var qs = []*survey.Question{
 
 func retrieveData(input string) (string, string) {
 	accounts := map[string][2]string{
-		// "flh-dev":    {"405622158906", "flh-developer-admin"},
-		// "learn-dev":  {"329043178936", "learn-application-admin"},
-		// "learn-prod": {"840218319247", "learn-application-admin"},
-		"wdsops-dev": {"879613780019", "wdsops-developer-admin"},
+		"wdsops-dev":  {"879613780019", "wdsops-developer-admin"},
+		"ECWS-v3":     {"521784486762", "learn-application-admin"},
+		"flh-dev":     {"405622158906", "flh-developer-admin"},
+		"flh-test":    {"504465124926", "flh-developer-admin"},
+		"learn-dev":   {"329043178936", "learn-application-admin"},
+		"learn-prod":  {"840218319247", "learn-application-admin"},
+		"mapi-dev":    {"204718834091", "mapi-developer-admin"},
+		"mapi-test":   {"395677180642", "mapi-developer-admin"},
+		"pc2-dev":     {"155987839255", "pc2-developer-admin"},
+		"pc2-test":    {"115900149718", "pc2-developer-admin"},
+		"scout-dev":   {"198854277681", "scout-application-admin"},
+		"scout-impl":  {"394953402894", "scout-application-admin"},
+		"scout-prod":  {"263813120251", "scout-application-admin"},
+		"scout-test":  {"001265600887", "scout-application-admin"},
+		"wdsops-prod": {"251875634914", "wdsops-application-admin"},
 	}
 	return accounts[input][0], accounts[input][1]
 }
