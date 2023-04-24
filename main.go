@@ -8,6 +8,9 @@ import (
 )
 
 var qs = []*survey.Question{
+
+	// TODO: assuming web access since I will be putting all cli auth into aliases
+
 	// {
 	// 	Name: "access",
 	// 	Prompt: &survey.Select{
@@ -47,11 +50,11 @@ func retrieveData(input string) (string, string) {
 	return accounts[input][0], accounts[input][1]
 }
 
-// type Data struct {
-// 	Key    string `json:"access_key"`
-// 	Secret string `json:"secret_access_key"`
-// 	Token  string `json:"session_token"`
-// }
+type Data struct {
+	Key    string `json:"access_key"`
+	Secret string `json:"secret_access_key"`
+	Token  string `json:"session_token"`
+}
 
 func main() {
 	answers := struct {
@@ -74,23 +77,23 @@ func main() {
 			fmt.Println("could not run command: ", err)
 		}
 	} else {
-		fmt.Println(fmt.Sprintf("source <(kion credentials --account-id %s --cloud-access-role %s --format export)", id, role))
-		// source <(kion credentials --account-id 879613780019 --cloud-access-role wdsops-developer-admin --format export)
+		fmt.Println(fmt.Sprintf("Run the following command:\n\nsource <(kion credentials --account-id %s --cloud-access-role %s --format export)", id, role))
 		// cmd := exec.Command("kion", "credentials", "--account-id", id, "--cloud-access-role", role, "--format", "export")
 		// out, err := cmd.Output()
 		// if err != nil {
 		// 	fmt.Println("could not run command: ", err)
 		// }
 		// fmt.Println(string(out))
-	}
+		// var data Data
+		// err2 := json.Unmarshal(out, &data)
+		// if err2 != nil {
+		// 	fmt.Println("could not interpret json: ", err2)
+		// }
+		// os.Setenv("AWS_SECRET_ACCESS_KEY", data.Key)
+		// os.Setenv("AWS_SECRET_ACCESS_KEY", data.Secret)
+		// os.Setenv("AWS_SESSION_TOKEN", data.Token)
 
-	// var data Data
-	// err2 := json.Unmarshal(out, &data)
-	// if err2 != nil {
-	// 	fmt.Println("could not interpret json: ", err2)
-	// }
-	// os.Setenv("AWS_SECRET_ACCESS_KEY", data.Key)
-	// os.Setenv("AWS_SECRET_ACCESS_KEY", data.Secret)
-	// os.Setenv("AWS_SESSION_TOKEN", data.Token)
+		// fmt.Println(os.Getenv("AWS_SECRET_ACCESS_KEY"))
+	}
 
 }
